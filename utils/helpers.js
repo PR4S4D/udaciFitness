@@ -1,4 +1,13 @@
-export function getMetricMetaInfo (metric) {
+import React from 'react';
+import { View } from 'react-native';
+import {
+  FontAwesome,
+  MaterialIcons,
+  MaterialCommunityIcons
+} from '@expo/vector-icons';
+import { black } from './colors';
+
+export function getMetricMetaInfo(metric) {
   const info = {
     run: {
       displayName: 'Run',
@@ -9,13 +18,9 @@ export function getMetricMetaInfo (metric) {
       getIcon() {
         return (
           <View>
-            <MaterialIcons
-              name='directions-run'
-              color={black}
-              size={35}
-            />
+            <MaterialIcons name="directions-run" color={black} size={35} />
           </View>
-        )
+        );
       }
     },
     bike: {
@@ -27,13 +32,9 @@ export function getMetricMetaInfo (metric) {
       getIcon() {
         return (
           <View>
-            <MaterialCommunityIcons
-              name='bike'
-              color={black}
-              size={32}
-            />
+            <MaterialCommunityIcons name="bike" color={black} size={32} />
           </View>
-        )
+        );
       }
     },
     swim: {
@@ -45,13 +46,9 @@ export function getMetricMetaInfo (metric) {
       getIcon() {
         return (
           <View>
-            <MaterialCommunityIcons
-              name='swim'
-              color={black}
-              size={35}
-            />
+            <MaterialCommunityIcons name="swim" color={black} size={35} />
           </View>
-        )
+        );
       }
     },
     sleep: {
@@ -63,13 +60,9 @@ export function getMetricMetaInfo (metric) {
       getIcon() {
         return (
           <View>
-            <FontAwesome
-              name='bed'
-              color={black}
-              size={30}
-            />
+            <FontAwesome name="bed" color={black} size={30} />
           </View>
-        )
+        );
       }
     },
     eat: {
@@ -81,60 +74,56 @@ export function getMetricMetaInfo (metric) {
       getIcon() {
         return (
           <View>
-            <MaterialCommunityIcons
-              name='food'
-              color={black}
-              size={35}
-            />
+            <MaterialCommunityIcons name="food" color={black} size={35} />
           </View>
-        )
+        );
       }
-    },
-  }
+    }
+  };
 
-  return typeof metric === 'undefined'
-    ? info
-    : info[metric]
+  return typeof metric === 'undefined' ? info : info[metric];
 }
 
-export function isBetween (num, x, y) {
+export function isBetween(num, x, y) {
   if (num >= x && num <= y) {
-    return true
+    return true;
   }
 
-  return false
+  return false;
 }
 
-export function calculateDirection (heading) {
-  let direction = ''
+export function calculateDirection(heading) {
+  let direction = '';
 
   if (isBetween(heading, 0, 22.5)) {
-    direction = 'North'
+    direction = 'North';
   } else if (isBetween(heading, 22.5, 67.5)) {
-    direction = 'North East'
+    direction = 'North East';
   } else if (isBetween(heading, 67.5, 112.5)) {
-    direction = 'East'
+    direction = 'East';
   } else if (isBetween(heading, 112.5, 157.5)) {
-    direction = 'South East'
+    direction = 'South East';
   } else if (isBetween(heading, 157.5, 202.5)) {
-    direction = 'South'
+    direction = 'South';
   } else if (isBetween(heading, 202.5, 247.5)) {
-    direction = 'South West'
+    direction = 'South West';
   } else if (isBetween(heading, 247.5, 292.5)) {
-    direction = 'West'
+    direction = 'West';
   } else if (isBetween(heading, 292.5, 337.5)) {
-    direction = 'North West'
+    direction = 'North West';
   } else if (isBetween(heading, 337.5, 360)) {
-    direction = 'North'
+    direction = 'North';
   } else {
-    direction = 'Calculating'
+    direction = 'Calculating';
   }
 
-  return direction
+  return direction;
 }
 
-export function timeToString (time = Date.now()) {
-  const date = new Date(time)
-  const todayUTC = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
-  return todayUTC.toISOString().split('T')[0]
+export function timeToString(time = Date.now()) {
+  const date = new Date(time);
+  const todayUTC = new Date(
+    Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+  );
+  return todayUTC.toISOString().split('T')[0];
 }
