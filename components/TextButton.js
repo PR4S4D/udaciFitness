@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 
-export default ({ children, onPress }) => {
+export default function TextButton({ children, onPress }) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <Text>{children}</Text>
     </TouchableOpacity>
   );
-};
+}
